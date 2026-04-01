@@ -82,7 +82,12 @@ fun calculator(x: Int, y: Int, op: String) {
         "/" -> println(x / y)
         //3.2
         "!" -> println(factorial(x))
-        "^" -> println(x.toDouble().pow(y.toDouble()))
+        "^" -> {
+            println(x.toDouble().pow(y.toDouble()))
+            println(pow1(x, y))
+            println(pow2(x, y))
+            println(pow3(x, y))
+        }
         //3.3
         else -> println("Operation not handled")
     }
@@ -96,29 +101,35 @@ fun factorial(x: Int): Int {
     return res
 }
 
-fun pow1(x: Int, y: Int) {
+fun pow1(x: Int, y: Int): Int {
+    if (y == 0) return 1
     var res = x
-    for (i in 0..y) {
+    for (i in 2..y) {
         res *= x
     }
+    return res
 }
 
-fun pow2(x: Int, y: Int) {
+fun pow2(x: Int, y: Int): Int {
+    if (y == 0) return 1
     var res = x
     var i = 0
-    while (i < y) {
+    while (i < y - 1) {
         res *= x
         i++
     }
+    return res
 }
 
-fun pow3(x: Int, y: Int){
+fun pow3(x: Int, y: Int): Int {
+    if (y == 0) return 1
     var res = x
-    repeat(y) {
+    repeat(y - 1) {
         res *= x
     }
+    return res
 }
 
-fun fib(n: Int) {
-    var
-}
+// fun fib(n: Int) {
+//     var
+// }
