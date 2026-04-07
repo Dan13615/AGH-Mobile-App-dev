@@ -2,6 +2,40 @@ package com.example.lab3
 
 import kotlin.math.pow
 
+//5 Class and objects
+open class Animal {
+    var name: String
+    var age: Int
+    var species: String
+
+    constructor(name: String, age: Int, species: String) {
+        this.name = name
+        this.age = age
+        this.species = species
+    }
+
+    open fun move() {
+        println("$name is moving.")
+    }
+
+    override fun toString(): String {
+        return "Hi I am a $species. I am $age years old and my name is $name."
+    }
+}
+
+class Fish(name: String, age: Int) : Animal(name, age, "Fish") {
+    override fun move() {
+        println("$name is swimming.")
+    }
+}
+
+class Dog(name: String, age: Int) : Animal(name, age, "Dog") {
+    override fun move() {
+        println("$name is running.")
+    }
+}
+
+
 fun main() {
     // 2.1-2.3
     val a = 1
@@ -135,6 +169,27 @@ fun main() {
     insertionSort(randomNumbers)
     //bubble sort
     bubbleSort(randomNumbers2)
+
+    //5
+    val animal1 = Animal("Puffy", 6, "spider")
+    animal1.move()
+    println(animal1)
+
+    /* 
+    * The method executed for the .move() method bellow are the method
+    * overriden by the child classes Fish and Dog
+    * this is the the principle of overriding with the keyword "override"
+    * The parent class (Animal) method move() implementation is not longer 
+    * used but replaced by the child classes' implementation
+    */ 
+
+    val animal2 = Fish("Nemo", 2)
+    animal2.move()
+    println(animal2)
+
+    val animal3 = Dog("Buddy", 3)
+    animal3.move()
+    println(animal3)
 }
 
 fun calculator(x: Int, y: Int, op: String) {
