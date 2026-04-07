@@ -60,17 +60,81 @@ fun main() {
     //3 Calculator
     while (true) {
         println(
-            "Enter two numbers and the operator you want to use separated by a space" +
-                    " ('x' 'y' '[+,-,*,/]') :"
+            "Enter operation: 'x y op' for binary (+,-,*,/,^), 'x !' for factorial, or 'exit' to stop:"
         )
-        val (nb1, nb2, op) = readln().split(' ')
-        if (nb1 == "exit")
+        val input = readln().trim()
+        if (input == "exit")
             break
-        val x = nb1.toInt()
-        val y = nb2.toInt()
 
-        calculator(x, y, op)
+        val parts = input.split("\\s+".toRegex())
+        when (parts.size) {
+            2 -> {
+                val x = parts[0].toIntOrNull()
+                val op = parts[1]
+                if (x == null || op != "!") {
+                    println("Invalid input. Use: 'x !'")
+                    continue
+                }
+                calculator(x, 0, op)
+            }
+            3 -> {
+                val x = parts[0].toIntOrNull()
+                val y = parts[1].toIntOrNull()
+                val op = parts[2]
+                if (x == null || y == null) {
+                    println("Invalid numbers. Use integers only.")
+                    continue
+                }
+                calculator(x, y, op)
+            }
+            else -> println("Invalid input format.")
+        }
     }
+    //3.5
+
+    print("Enter n for Fibonacci sequence: ")
+    val n = readln().toIntOrNull()
+    if (n == null || n <= 0) {
+        println("n must be a positive integer")
+    } else {
+        println(fib(n).joinToString(" "))
+    }
+
+    //3.6
+
+    print("Enter pr for pyramid: ")
+    val pr = readln().toIntOrNull()
+    if (pr == null || pr <= 0) {
+        println("pr must be a positive integer")
+    } else {
+        piramide(pr)
+    }
+
+    //3.7
+
+    print("Enter a string to reverse: ")
+    val word = readln()
+    rev_string(word)
+
+    //4 Array
+
+    var names: Array<String> = arrayOf("Lucas", "Dan", "Manou")
+
+    println(names.joinToString(", "))
+
+    for (i in names.indices) {
+        println("$i: ${names[i]}")
+    }
+    //4.4
+    find_longest(names)
+
+    //4.5
+    val randomNumbers = Array(100) { (1..100).random() }
+    val randomNumbers2 = Array(100) { (1..100).random() }
+    //insertion sort
+    insertionSort(randomNumbers)
+    //bubble sort
+    bubbleSort(randomNumbers2)
 }
 
 fun calculator(x: Int, y: Int, op: String) {
@@ -79,7 +143,13 @@ fun calculator(x: Int, y: Int, op: String) {
         "+" -> println(x + y)
         "-" -> println(x - y)
         "*" -> println(x * y)
-        "/" -> println(x / y)
+        "/" -> {
+            if (y == 0) {
+                println("Division by zero is not allowed")
+            } else {
+                println(x / y)
+            }
+        }
         //3.2
         "!" -> println(factorial(x))
         "^" -> {
@@ -94,10 +164,14 @@ fun calculator(x: Int, y: Int, op: String) {
 }
 
 fun factorial(x: Int): Int {
+    if (x < 0) {
+        println("Factorial is undefined for negative numbers")
+        return 0
+    }
     var res = 1
-    var i = 0
-    for (i in 0..x)
-        res *= (i + 1)
+    for (i in 1..x) {
+        res *= i
+    }
     return res
 }
 
@@ -130,6 +204,69 @@ fun pow3(x: Int, y: Int): Int {
     return res
 }
 
-// fun fib(n: Int) {
-//     var
-// }
+fun fib(n: Int): List<Int> {
+    if (n <= 0) return emptyList()
+    if (n == 1) return listOf(1)
+
+    val result = mutableListOf(1, 1)
+    while (result.size < n) {
+        val next = result[result.size - 1] + result[result.size - 2]
+        result.add(next)
+    }
+    return result
+}
+
+fun piramide(n: Int) {
+    repeat(n) { print("*") }
+    println()
+    for (i in 1..n) {
+        repeat(n - i) { print("*") }
+        println()
+    }
+}
+
+fun rev_string(word: String) {
+    var result = ""
+    for (i in word.length - 1 downTo 0) {
+        result += word[i]
+    }
+    println(result)
+}
+
+fun find_longest(names: Array<String>) {
+    var longest = ""
+    for (name in names) {
+        if (name.length > longest.length) {
+            longest = name
+        }
+    }
+    println("Longest name: $longest")
+}
+
+fun insertionSort(nbList: Array<Int>) {
+    print("Original array: ${nbList.joinToString(", ")}")
+    for (i in 1 until nbList.size) {
+        val key = nbList[i]
+        var j = i - 1
+        while (j >= 0 && nbList[j] > key) {
+            nbList[j + 1] = nbList[j]
+            j--
+        }
+        nbList[j + 1] = key
+    }
+    println("Sorted array: ${nbList.joinToString(", ")}")
+}
+
+fun bubbleSort(nbList: Array<Int>) {
+    print("Original array: ${nbList.joinToString(", ")}")
+    for (i in 0 until nbList.size - 1) {
+        for (j in 0 until nbList.size - i - 1) {
+            if (nbList[j] > nbList[j + 1]) {
+                val temp = nbList[j]
+                nbList[j] = nbList[j + 1]
+                nbList[j + 1] = temp
+            }
+        }
+    }
+    println("Sorted array: ${nbList.joinToString(", ")}")
+}
