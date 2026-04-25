@@ -71,8 +71,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUpdateUserDataButton() {
         binding.btnUpdateUser.setOnClickListener {
-            user.lastName = MutableLiveData("Smith")
-            binding.user = user
+            user.lastName.value = "Smith"
+            user.firstName.value = binding.etDataBinding.text.toString()
         }
     }
 }
