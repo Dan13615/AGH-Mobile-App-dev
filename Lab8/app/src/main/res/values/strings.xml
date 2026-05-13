@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NavigationPractice</string>
+
+    <!-- First Fragment buttons -->
+    <string name="go_to_second_fragment">Go to Second Fragment</string>
+    <string name="go_to_third_fragment">Go to Third Fragment</string>
+    <string name="go_to_actions_activity">Go to Actions Activity</string>
+
+    <!-- Second / Third Fragment buttons -->
+    <string name="back_to_first">Back to First</string>
+
+    <!-- Actions Activity buttons -->
+    <string name="write_to_logcat">Write to LogCat</string>
+    <string name="show_toast">Show Toast</string>
+    <string name="write_to_edit_text">Write To EditText</string>
+    <string name="back_to_first_fragment">Back To First Fragment</string>
+</resources>

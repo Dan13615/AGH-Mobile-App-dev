@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/holo_blue_light"
+    tools:context=".FirstFragment">
+
+    <Button
+        android:id="@+id/go_to_second_fragment_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="16dp"
+        android:backgroundTint="@android:color/holo_green_light"
+        android:text="@string/go_to_second_fragment"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/go_to_third_fragment_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginHorizontal="16dp"
+        android:backgroundTint="@android:color/holo_green_light"
+        android:text="@string/go_to_third_fragment"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/go_to_actions_activity_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginHorizontal="16dp"
+        android:backgroundTint="@android:color/holo_green_light"
+        android:text="@string/go_to_actions_activity"
+        android:textSize="18sp" />
+
+</LinearLayout>
